@@ -1,35 +1,33 @@
 console.log("sanity check");
 
 new Vue({
-    el: "#main",
+    el: "#cards",
     data: {
-        name: "Irn Bru",
-        seen: true,
-        cities: [],
+        images: [],
+        // title: "",
+        // description: "",
+        // username: "",
+        // file: null,
     },
     mounted: function () {
-        console.log("my main vue instance has mounted!");
-        // we will use axios to communicate with our server
-        console.log("this.cities: ", this.cities);
-        console.log("this: ", this);
         var self = this;
         axios
-            .get("/cities")
+            .get("/images")
             .then(function (response) {
-                console.log("this.cities after axios: ", this.cities);
-                console.log("this after axios: ", this);
-                console.log("response", response.data);
-                console.log("self: ", self);
-                self.cities = response.data;
+                self.images = response.data;
             })
             .catch(function (err) {
                 console.log("error in axios", err);
             });
     },
-    methods: {
-        handleClick: function (city) {
-            console.log("handleclick running", city);
-            this.seen = !this.seen;
-        },
-    },
+    // methods: {
+    //     handleClick: function () {
+    //         console.log("this.title:", this.title);
+    //         console.log("this.desciption:", this.desciption);
+    //     },
+    //     handleChange: function (e) {
+    //         console.log("e.target.files[0]:", e.target.files);
+    //         console.log("e.target.files[0]:", e.target.files);
+    //     },
+    // },
 });
