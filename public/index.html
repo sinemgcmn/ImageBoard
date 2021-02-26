@@ -9,6 +9,12 @@
     <header>header</header>
     <main>
         <div id="cards">
+            <div v-for="image in images">
+                <img :src="image.url"> 
+                <p>{{image.description}}</p>
+            
+            </div>
+         
         <!-- <form>
             <input v-model="title" type="text" name="title" placeholder="title">
             <input v-model="description" type="text" name="descriptiom" placeholder="description">
@@ -16,10 +22,7 @@
             <input @change="handleChange" type="file" name="file" accept="image/*">
             <button @click.prevent="handleClick">Submit</button>
         </form> -->
-        <img v-for="image in images" 
-        :key="image.id" 
-        :src="image.url"
-        :title="image.description"/>
+        
         
         </div>
     </main>

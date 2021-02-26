@@ -30,7 +30,7 @@ app.get("/images", (req, res) => {
     db.getInfoImages()
         .then(({ rows }) => {
             console.log(rows);
-            res.json(images);
+            res.json(rows);
         })
         .catch((err) => {
             console.log(err);
