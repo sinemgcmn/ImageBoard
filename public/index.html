@@ -9,10 +9,9 @@
     <header>header</header>
     <main>
         <div id="cards">
-            <div v-for="image in images">
-                <img :src="image.url"> 
-                <p>{{image.description}}</p>
-            
+            <div v-for="image in images" :key="image.id">
+                <img :src="image.url" :alt="image.description"> 
+                <p>{{image.title}}</p>
             </div>
          
         <!-- <form>
