@@ -1,35 +1,114 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    color: white;
 }
 
 body {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 70px 1fr 30px;
+    grid-template-rows: 250px 1fr 300px;
 }
+
+/* header part*/
 
 header {
-    background-color: orange;
+    background-image: url("header.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+header .overlay {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 46, 35, 0.3);
+    z-index: 1;
+}
+
+.headerTop {
+    position: relative;
+    top: 30%;
+    font-size: 56px;
+    letter-spacing: 35px;
+    text-align: center;
+    z-index: 10;
+    color: white;
+}
+
+.headerBottom {
+    position: relative;
+    top: 40%;
+    font-size: 25px;
+    letter-spacing: 12px;
+    text-align: center;
+    z-index: 10;
+    color: white;
+}
+/* main part*/
 
 main {
-    background-color: grey;
+    background-image: url("wall.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-footer {
-    background-color: pink;
+.searchBar {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-#cards {
+button {
+    background-image: url("cuba.jpeg");
+    width: 150px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+input {
+    width: 250px;
+    height: 35px;
+    background: transparent;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+.image-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: auto;
-    grid-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    justify-items: center;
+    column-gap: 3%;
+    row-gap: 1%;
+    margin: 50px 5%;
 }
 
-/* .card {
+.card {
     border: 2px solid #000000;
     border-radius: 4px;
     padding: 0.5rem;
-} */
+}
+
+/* main part*/
+footer {
+    background-image: url("cuba.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+footer .overlay {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
