@@ -8,6 +8,12 @@ module.exports.getInfoImages = () => {
     return db.query(q);
 };
 
+module.exports.getImageById = (id) => {
+    console.log(id);
+    const q = `SELECT * FROM images WHERE id=${id}`;
+    return db.query(q);
+};
+
 module.exports.addImage = (title, description, username, url) => {
     const q = `
         INSERT INTO images (title, description, username, url)

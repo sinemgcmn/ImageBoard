@@ -1,46 +1,64 @@
 <!doctype html>
 <html>
-<head>
-    <title>imageboard</title>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-</head>
 
-<body>
-    <header>
-        <div class="overlay">
-        <p class=headerTop>BERLIN STREET ART</p>
-        <p class=headerBottom>Latest cool images of Berlin Street Art</p>
-        </div>
-    </header>
-    <main>
-        
-        <div id="cards">
-            <div class= searchBar>
-         <form>
-            <input v-model="title" type="text" name="title" placeholder="title">
-            <input v-model="description" type="text" name="description" placeholder="description">
-            <input v-model="username" type="text" name="username" placeholder="username">
-            <input @change="handleChange" type="file" name="file" accept="image/*">
-            <button @click.prevent="handleClick">Submit</button>
-        </form>
-        </div>
-         <div class="image-container">
-                <div v-for="image in images" :key="image.id">
-                <img :src="image.url" :alt="image.description"> 
-                <p>{{image.title}}</p>
-                <p>{{image.description}}</p>
-                <p>post by {{image.username}}</p>
-                <p>at {{image.description}}</p>
+    <head>
+        <title>imageboard</title>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/style.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="overlay">
+                <p class=headerTop>BERLIN STREET ART</p>
+                <p class=headerBottom>Latest cool images of Berlin Street Art</p>
+            </div>
+        </header>
+        <main>
+            <div id="cards">
+                <div class=searchBar>
+                    <form>
+                        <input v-model="title" type="text" name="title" placeholder="title">
+                        <input v-model="description" type="text" name="description" placeholder="description">
+                        <input v-model="username" type="text" name="username" placeholder="username">
+                        <input @change="handleChange" type="file" name="file" accept="image/*">
+                        <button @click.prevent="handleClick">Submit</button>
+                    </form>
+                </div>
+                <!--component-->
+                <!-- It is customary for the name to be all lowercase and have hyphens separating words (kebab-case). -->
+                <my-image-component v-if="imageSelected" :image-id="imageSelected" @close="closeComponent">
+                </my-image-component>
+                <!--component-end-->
+
+                <div class="image-container">
+                    <div v-for="image in images" :key="image.id">
+                        <img v-on:click="selectImage(image.id)" :src="image.url" :alt="image.description">
+                        <p>{{image.title}}</p>
+                        <p>post by {{image.username}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-    <footer>
-         <div class="overlay"></div>
-    </footer>
-    <script src="/js/vue.js"></script>
-    <script src="/js/axios.min.js"></script>
-    <script src="/js/script.js"></script>
-</body>
+        </main>
+        <footer>
+            <div class="overlay"></div>
+        </footer>
+        <script id="my-image-template" type="text/x-template">
+            <div class="component" style="position: absolute; z-index:1; background-color:rgba(0,0,0,0.7); top:0; left:0; width:100%; height:100%; display:flex;justify-content:center;align-items:center;">
+               <div>
+                <h1>This is my first component</h1>
+               <p  @click="closeModalOnParent">X</p>
+                        <img :src="image.url">  
+                        <p>{{image.title}}</p>
+                        <p>{{image.description}}</p>
+                        <p>{{image.username}}</p>
+                        <p>{{image.created_at}}</p> 
+               </div>
+            </div>
+            </script>
+        <script src="/js/vue.js"></script>
+        <script src="/js/axios.min.js"></script>
+        <script src="/js/script.js"></script>
+    </body>
+
 </html>

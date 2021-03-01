@@ -1,13 +1,13 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    color: white;
+    color: black;
 }
 
 body {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 250px 1fr 300px;
+    grid-template-rows: 300px 1fr 300px;
 }
 
 /* header part*/
@@ -49,7 +49,8 @@ header .overlay {
 /* main part*/
 
 main {
-    background-image: url("wall.jpeg");
+    /* background-image: url("wall.jpg"); */
+    background-color: rgb(250, 249, 249);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -69,6 +70,7 @@ button {
 }
 
 input {
+    /* background-image: url("cuba.jpeg"); */
     width: 250px;
     height: 35px;
     background: transparent;
