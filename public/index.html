@@ -14,7 +14,9 @@
         </div>
     </header>
     <main>
-        <div class= searchBar>
+        
+        <div id="cards">
+            <div class= searchBar>
          <form>
             <input v-model="title" type="text" name="title" placeholder="title">
             <input v-model="description" type="text" name="description" placeholder="description">
@@ -23,8 +25,7 @@
             <button @click.prevent="handleClick">Submit</button>
         </form>
         </div>
-        <div id="cards">
-            <div class="image-container">
+         <div class="image-container">
                 <div v-for="image in images" :key="image.id">
                 <img :src="image.url" :alt="image.description"> 
                 <p>{{image.title}}</p>

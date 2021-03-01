@@ -31,7 +31,6 @@ app.get("/images", (req, res) => {
     db.getInfoImages()
         .then(({ rows }) => {
             res.json(rows);
-            console.log("stuck etmiyorum");
         })
         .catch((err) => {
             console.log(err);
