@@ -1,6 +1,4 @@
 (function () {
-    //  Almost everything you can pass to the Vue constructor you can also pass to Vue.component.
-    // Two important exceptions are el and data.
     Vue.component("my-image-component", {
         template: "#my-image-template",
         data: function () {
@@ -21,6 +19,34 @@
         },
     });
 
+    Vue.component("my-comment-component", {
+        template: "#my-comment-template",
+        data: function () {
+            return {
+                comments: [],
+                username: "",
+                comment: "",
+            };
+        },
+        props: ["imageId"],
+        mounted: function () {
+            axios.get("/comment/").then((res) => {
+                console.log(res.data);
+            });
+        },
+        methods: {
+            writeComment: function (e) {
+                e.preventDefault();
+                axios
+                    .post("/comment/")
+                    .then(function (res) {})
+                    .catch(function (err) {
+                        console.log("error from post req", err);
+                    });
+            },
+        },
+    });
+
     new Vue({
         el: "#cards",
         data: {
@@ -33,7 +59,7 @@
         },
 
         mounted: function () {
-            var vueInstanceData = this;
+            // var vueInstanceData = this;
             axios
                 .get("/images")
                 .then((response) => {
@@ -46,8 +72,8 @@
         methods: {
             selectImage: function (id) {
                 this.imageSelected = id;
-                console.log("user selected a image");
-                console.log("mood id clicked in main vue instance:", id);
+                // console.log("user selected a image");
+                // console.log("mood id clicked in main vue instance:", id);
             },
             closeComponent: function () {
                 this.imageSelected = null;
@@ -69,6 +95,30 @@
                         console.log("error from post req", err);
                     });
             },
+            getFurtherImages: function () {
+                // console.log("upload more");
+                const lowestId = this.images[this.images.length - 1].id;
+                // console.log(lowestId);
+                var vueInstanceData = this;
+                // console.log(vueInstanceData);
+                axios
+                    .get("/more/" + lowestId)
+                    .then(function (res) {
+                        // console.log("res", res.data);
+                        // console.log("vueInstanceData: ", vueInstanceData);
+                        var furtherDataFromImages = [
+                            ...vueInstanceData.images,
+                            ...res.data,
+                        ];
+
+                        vueInstanceData.images = furtherDataFromImages;
+                        // console.log(furtherDataFromImages);
+                    })
+                    .catch(function (err) {
+                        console.log("error from post req", err);
+                    });
+            },
+
             handleChange: function (e) {
                 console.log("e.target.files[0]: ", e.target.files[0]);
                 console.log("handle change is running!");

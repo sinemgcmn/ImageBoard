@@ -62,6 +62,12 @@ main {
     margin-top: 30px;
 }
 
+#moreButton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
 button {
     background-image: url("cuba.jpeg");
     width: 150px;
@@ -77,13 +83,13 @@ input {
 }
 
 img {
-    width: 250px;
-    height: 250px;
+    width: 400px;
+    height: 350px;
 }
 
 .image-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr auto;
     align-items: center;
     justify-items: center;

@@ -27,16 +27,6 @@ const uploader = multer({
 
 app.use(express.static("public"));
 
-app.get("/images/:id", (req, res) => {
-    db.getImageById(req.params.id)
-        .then(({ rows }) => {
-            res.json(rows);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
 app.get("/images", (req, res) => {
     db.getInfoImages()
         .then(({ rows }) => {
@@ -53,13 +43,6 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     // console.log(url);
     const { title, username, description } = req.body;
 
-    const imgToArr = {
-        title: "",
-        description: "",
-        username: "",
-        url: "",
-    };
-
     if (req.file) {
         db.addImage(title, description, username, url).then(({ rows }) => {
             console.log(rows);
@@ -72,6 +55,48 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             success: false,
         });
     }
+});
+
+app.get("/images/:id", (req, res) => {
+    db.getImageById(req.params.id)
+        .then(({ rows }) => {
+            res.json(rows);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.get("/more/:lowestId", (req, res) => {
+    const lowestId = req.params.lowestId;
+    // console.log(db.getLastImage);
+    db.getFurtherImages(lowestId)
+        .then(({ rows }) => {
+            res.json(rows);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.get("/get-comments/:imageid", (req, res) => {
+    db.getAllComments(req.params.imageid)
+        .then(({ rows }) => {
+            res.json(rows);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.post("/comment", (req, res) => {
+    const { comment, username } = req.body;
+    db.insertComments(comment, username).then(({ rows }) => {
+        console.log(rows);
+        res.json({
+            success: true,
+        });
+    });
 });
 
 app.listen(8080, () => console.log("My imageboard is listening"));
