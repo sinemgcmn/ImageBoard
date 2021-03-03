@@ -58,7 +58,7 @@
             // console.log(this);
             axios.get("/get-comments/" + this.imageId).then((res) => {
                 vueComponentData.comments = res.data;
-                // console.log(res.data);
+                console.log(vueComponentData.comments);
             });
         },
 
@@ -92,6 +92,7 @@
                     .then(function (res) {
                         vueComponentData.comments.unshift(res.data);
                         console.log(res.data);
+                        location.reload();
                     })
                     .catch(function (err) {
                         console.log("error from post req", err);

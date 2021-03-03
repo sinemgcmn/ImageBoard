@@ -64,42 +64,50 @@
       
         <!-- First Template For First Component -->
         <script id="my-image-template" type="text/x-template">
+
             <div class="back">
+            
+            <div class="backInfo">
+                <div class="closeButton"  @click="closeModalOnParent">X</div>
             <div class="component">
                <div>
-               <p  @click="closeModalOnParent">X</p>
-                        <img :src="image.url">  
-                        <p>Title {{image.title}}</p>
-                        <p>Description {{image.description}}</p>
-                        <p>Posted by {{image.username}}</p>
+                        <img :src="image.url">
+                        <div class="inputEntire">  
+                        <p class="inputTitle">{{image.title}}</p>
+                        <p class="inputDes">{{image.description}}</p>
+                        <p class="inputPost">Posted by {{image.username}}</p>
+                        </div>
                         <!-- <p>{{image.created_at}}</p>  -->
                </div>
                </div>
+               
                 <my-comment-component v-bind:imageId="imageId"></my-comment-component>
+                </div>
 
             </div>
         </script>
         <!-- First Template For First Component end -->
 
 
-           <!-- Second Template For Second Component -->
+        
          <script id="my-comment-template" type="text/x-template">
                 <div class="comments">
-                    <div>
+                
                         <div>
-                        <input class="commentInput"  v-model="comment" type="text" name="comment" placeholder="comment">
+                        <input class="commentInput input"  v-model="comment" type="text" name="comment" placeholder="comment">
                         </div>
                         <div>
-                        <input class="commentInput" v-model="username" type="text" name="username" placeholder="username">
+                        <input class="commentInput input" v-model="username" type="text" name="username" placeholder="username">
                         </div>
                         <div>
-                        <button @click="writeComment">Submit</button>
+                        <button class="inputButton" @click="writeComment">Submit</button>
                         </div>
-                    </div>
+                  
                     <div class="commentArray">
-                       <div v-for="comment in comments" :key="imageId">
-                        <p class="commentInput">Comment:{{comment.comment}}</p>
+                       <div class="commentBox" v-for="comment in comments" :key="imageId">
+                        <p class="commentInput comment">{{comment.comment}}</p>
                         <p class="commentInput">Username:{{comment.username}}</p>
+                        
                         </div>
                        </div>
 
