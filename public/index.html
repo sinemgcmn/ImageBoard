@@ -39,7 +39,7 @@
                 <!-- selecting spesific image for first component -->
                 <div class="image-container">
                     <div v-for="image in images" :key="image.id">
-                        <a :href=" '#' + image.id">
+                        <a  :href=" '#' + image.id">
                         <img :src="image.url" :alt="image.description">
                         <!-- v-on:click="selectImage(image.id)" -->
                         <p>{{image.title}}</p>

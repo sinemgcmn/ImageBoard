@@ -15,10 +15,11 @@
         watch: {
             imageId: function () {
                 console.log("imageId changed!! This is the watcher reporting");
+                var vueComponentData = this;
                 axios
                     .get("/images/" + this.imageId)
                     .then((res) => {
-                        this.image = res.data[0];
+                        vueComponentData.image = res.data[0];
                     })
                     .catch(function (err) {
                         console.log("error in axios", err);
@@ -114,7 +115,14 @@
             window.addEventListener("hashchange", function () {
                 console.log("has change has fired");
                 console.log(location.hash);
-                vueInstanceData.imageSelected = location.hash.slice(1);
+                if (
+                    !location.hash.slice(1) == "" &&
+                    typeof location.hash.slice(1) == "number"
+                ) {
+                    vueInstanceData.imageSelected = location.hash.slice(1);
+                } else {
+                    vueInstanceData.closeComponent();
+                }
             });
         },
         methods: {
