@@ -33,7 +33,6 @@
             var vueComponentData = this;
             // console.log(this);
             axios.get("/get-comments/" + this.imageId).then((res) => {
-                console.log(res.data);
                 vueComponentData.comments = res.data;
                 console.log(res.data);
             });

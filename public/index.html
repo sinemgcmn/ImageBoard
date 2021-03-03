@@ -94,10 +94,11 @@
                         <button @click="writeComment">Submit</button>
                         </div>
                     </div>
-                    
-                        <div v-for="comment in comments" :key="imageId">
-                        <p class="commentInput">{{comment.comments}}</p>
-                        <p class="commentInput">{{username.comments}}</p>
+                    <div class="commentArray">
+                       <div v-for="comment in comments" :key="imageId">
+                        <p class="commentInput">{{comment.comment}}</p>
+                        <p class="commentInput">{{comment.username}}</p>
+                        </div>
                        </div>
 
                 </div>

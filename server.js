@@ -85,7 +85,7 @@ app.use(express.json());
 app.get("/get-comments/:imageId", (req, res) => {
     db.getAllComments(req.params.imageId)
         .then(({ rows }) => {
-            console.log(rows);
+            console.log("getallcomment:", rows);
             res.json(rows);
         })
         .catch((err) => {
@@ -96,7 +96,7 @@ app.get("/get-comments/:imageId", (req, res) => {
 app.post("/comment", (req, res) => {
     const { comment, username, imageId } = req.body;
     db.insertComments(comment, username, imageId).then(({ rows }) => {
-        console.log(rows);
+        console.log("comment:", rows);
         res.json({
             success: true,
         });
