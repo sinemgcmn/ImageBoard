@@ -62,8 +62,14 @@ main {
     z-index: 1;
     box-sizing: border-box;
     background-color: black;
-    width: 700px;
-    height: 700px;
+    width: 1500px;
+    height: 1500px;
+}
+
+.nana {
+    z-index: 1;
+    color: red;
+    font-size: 48px;
 }
 
 .component {
@@ -76,7 +82,8 @@ main {
 }
 
 .commentInput {
-    color: white;
+    color: red;
+    z-index: 1;
 }
 
 .searchBar {

@@ -42,7 +42,10 @@
                         <img v-on:click="selectImage(image.id)" :src="image.url" :alt="image.description">
                         <p>{{image.title}}</p>
                         <p>post by {{image.username}}</p>
+                        
                     </div>
+
+                
                 </div>
 
         
@@ -53,6 +56,7 @@
                 <button @click="getFurtherImages()">More</button>
                 </div>
                 <!-- more button -->
+
            
             </div>
       
@@ -90,11 +94,12 @@
                         <button @click="writeComment">Submit</button>
                         </div>
                     </div>
+                    
+                        <div v-for="comment in comments" :key="imageId">
+                        <p class="commentInput">{{comment.comments}}</p>
+                        <p class="commentInput">{{username.comments}}</p>
+                       </div>
 
-                    <div v-for="comment in comments">
-                        <p>{{comment.comments}}</p>
-                        <p>{{username.comments}}</p>
-                    </div>
                 </div>
         </script>
         <!-- Second Template For Second Component -->
