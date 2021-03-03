@@ -122,12 +122,15 @@
                     console.log("error in axios", err);
                 });
             window.addEventListener("hashchange", function () {
-                // console.log("has change has fired");
-                // console.log(location.hash);
-                if (typeof location.hash.slice(1) === "number") {
+                console.log(parseInt(location.hash.slice(1)));
+                if (
+                    !isNaN(parseInt(location.hash.slice(1))) &&
+                    !location.hash.slice(1) == ""
+                ) {
                     vueInstanceData.imageSelected = location.hash.slice(1);
                 } else {
                     vueInstanceData.closeComponent();
+                    location.href = location.origin;
                 }
             });
         },
