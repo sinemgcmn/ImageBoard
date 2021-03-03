@@ -82,9 +82,10 @@ app.get("/more/:lowestId", (req, res) => {
 
 app.use(express.json());
 
-app.get("/get-comments/:imageid", (req, res) => {
-    db.getAllComments(req.params.imageid)
+app.get("/get-comments/:imageId", (req, res) => {
+    db.getAllComments(req.params.imageId)
         .then(({ rows }) => {
+            console.log(rows);
             res.json(rows);
         })
         .catch((err) => {
