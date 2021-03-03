@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+
 const db = require("./db");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
@@ -24,7 +25,7 @@ const uploader = multer({
         fileSize: 2097152,
     },
 });
-app.use(express.json());
+
 app.use(express.static("public"));
 
 app.get("/images", (req, res) => {
@@ -79,6 +80,8 @@ app.get("/more/:lowestId", (req, res) => {
         });
 });
 
+app.use(express.json());
+
 app.get("/get-comments/:imageid", (req, res) => {
     db.getAllComments(req.params.imageid)
         .then(({ rows }) => {
@@ -90,8 +93,8 @@ app.get("/get-comments/:imageid", (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-    const { comment, username, imageid } = req.body;
-    db.insertComments(comment, username, imageid).then(({ rows }) => {
+    const { comment, username, imageId } = req.body;
+    db.insertComments(comment, username, imageId).then(({ rows }) => {
         console.log(rows);
         res.json({
             success: true,

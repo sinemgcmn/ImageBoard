@@ -1,13 +1,13 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    color: black;
 }
 
 body {
     display: grid;
     min-height: 100vh;
     grid-template-rows: 300px 1fr 300px;
+    color: black;
 }
 
 /* header part*/
@@ -51,9 +51,32 @@ header .overlay {
 main {
     /* background-image: url("wall.jpg"); */
     background-color: rgb(250, 249, 249);
-    background-size: cover;
+    /* background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; */
+}
+.back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    box-sizing: border-box;
+    background-color: black;
+    width: 700px;
+    height: 700px;
+}
+
+.component {
+    display: flex;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.commentInput {
+    color: white;
 }
 
 .searchBar {

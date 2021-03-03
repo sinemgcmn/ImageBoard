@@ -58,16 +58,18 @@
       
         <!-- First Template For First Component -->
         <script id="my-image-template" type="text/x-template">
-            <div class="component" style="position: absolute; z-index:1; background-color:rgba(0,0,0,0.7); top:0; left:0; width:100%; height:100%; display:flex;justify-content:center;align-items:center;">
+            <div class="back">
+            <div class="component">
                <div>
                <p  @click="closeModalOnParent">X</p>
                         <img :src="image.url">  
-                        <p>{{image.title}}</p>
-                        <p>{{image.description}}</p>
-                        <p>{{image.username}}</p>
-                        <p>{{image.created_at}}</p> 
+                        <p>Title {{image.title}}</p>
+                        <p>Description {{image.description}}</p>
+                        <p>Posted by {{image.username}}</p>
+                        <!-- <p>{{image.created_at}}</p>  -->
                </div>
-                <my-comment-component v-bind:imageId="image.id"></my-comment-component>
+               </div>
+                <my-comment-component v-bind:imageId="imageId"></my-comment-component>
 
             </div>
         </script>
@@ -78,9 +80,15 @@
          <script id="my-comment-template" type="text/x-template">
                 <div class="comments">
                     <div>
-                        <input v-model="comment" type="text" name="comment" placeholder="comment">
-                        <input v-model="username" type="text" name="username" placeholder="username">
+                        <div>
+                        <input class="commentInput"  v-model="comment" type="text" name="comment" placeholder="comment">
+                        </div>
+                        <div>
+                        <input class="commentInput" v-model="username" type="text" name="username" placeholder="username">
+                        </div>
+                        <div>
                         <button @click="writeComment">Submit</button>
+                        </div>
                     </div>
 
                     <div v-for="comment in comments">

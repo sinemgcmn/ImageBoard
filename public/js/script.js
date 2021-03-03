@@ -31,8 +31,8 @@
         props: ["imageId"],
         mounted: function () {
             var vueComponentData = this;
-            console.log(this);
-            axios.get("/get-comments/" + this.imageid).then((res) => {
+            // console.log(this);
+            axios.get("/get-comments/" + this.imageId).then((res) => {
                 console.log(res.data);
                 vueComponentData.comments = res.data;
                 console.log(res.data);
@@ -41,16 +41,17 @@
         methods: {
             writeComment: function () {
                 var vueComponentData = this;
+                console.log(this);
                 var data = {
                     comment: this.comment,
                     username: this.username,
-                    imageId: this.image.id,
+                    imageId: this.imageId,
                 };
                 axios
                     .post("/comment", data)
                     .then(function (res) {
-                        console.log(res.data);
                         vueComponentData.comments.unshift(res.data);
+                        console.log(res.data);
                     })
                     .catch(function (err) {
                         console.log("error from post req", err);

@@ -44,20 +44,20 @@ module.exports.getFurtherImages = (id) => {
 
 ///part-5////
 
-module.exports.getAllComments = (imageid) => {
+module.exports.getAllComments = (imageId) => {
     const q = `SELECT * 
                FROM comments 
-               WHERE commentid=${imageid}`;
+               WHERE commentid=${imageId}`;
 
     return db.query(q);
 };
 
-module.exports.insertComments = (comment, username, imageid) => {
+module.exports.insertComments = (comment, username, imageId) => {
     const q = `
         INSERT INTO comments (comment, username, commentid)
         VALUES ($1, $2, $3)
         RETURNING comment, username, commentid; 
     `;
-    const params = [comment, username, imageid];
+    const params = [comment, username, imageId];
     return db.query(q, params);
 };
