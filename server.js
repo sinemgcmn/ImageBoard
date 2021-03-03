@@ -59,6 +59,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.get("/images/:id", (req, res) => {
+    // if (typeof req.params.id === "number") {
     db.getImageById(req.params.id)
         .then(({ rows }) => {
             res.json(rows);
@@ -66,6 +67,7 @@ app.get("/images/:id", (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+    // }
 });
 
 app.get("/more/:lowestId", (req, res) => {
@@ -83,6 +85,7 @@ app.get("/more/:lowestId", (req, res) => {
 app.use(express.json());
 
 app.get("/get-comments/:imageId", (req, res) => {
+    // if (typeof req.params.imageId === "number") {
     db.getAllComments(req.params.imageId)
         .then(({ rows }) => {
             console.log("getallcomment:", rows);
@@ -91,6 +94,7 @@ app.get("/get-comments/:imageId", (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+    // }
 });
 
 app.post("/comment", (req, res) => {

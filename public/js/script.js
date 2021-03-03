@@ -8,9 +8,15 @@
         },
         props: ["imageId"],
         mounted: function () {
-            axios.get("/images/" + this.imageId).then((res) => {
-                this.image = res.data[0];
-            });
+            axios
+                .get("/images/" + this.imageId)
+                .then((res) => {
+                    console.log(res);
+                    this.image = res.data[0];
+                })
+                .catch(function (err) {
+                    console.log("error in axios", err);
+                });
         },
         watch: {
             imageId: function () {
@@ -19,6 +25,7 @@
                 axios
                     .get("/images/" + this.imageId)
                     .then((res) => {
+                        console.log(res);
                         vueComponentData.image = res.data[0];
                     })
                     .catch(function (err) {
@@ -29,6 +36,8 @@
 
         methods: {
             closeModalOnParent: function () {
+                console.log(location);
+                location.href = location.origin;
                 this.$emit("close");
             },
         },
@@ -49,7 +58,7 @@
             // console.log(this);
             axios.get("/get-comments/" + this.imageId).then((res) => {
                 vueComponentData.comments = res.data;
-                console.log(res.data);
+                // console.log(res.data);
             });
         },
 
@@ -113,12 +122,9 @@
                     console.log("error in axios", err);
                 });
             window.addEventListener("hashchange", function () {
-                console.log("has change has fired");
-                console.log(location.hash);
-                if (
-                    !location.hash.slice(1) == "" &&
-                    typeof location.hash.slice(1) == "number"
-                ) {
+                // console.log("has change has fired");
+                // console.log(location.hash);
+                if (typeof location.hash.slice(1) === "number") {
                     vueInstanceData.imageSelected = location.hash.slice(1);
                 } else {
                     vueInstanceData.closeComponent();
@@ -169,6 +175,14 @@
 
                         vueInstanceData.images = furtherDataFromImages;
                         // console.log(furtherDataFromImages);
+
+                        if (
+                            vueInstanceData.images[
+                                vueInstanceData.images.length - 1
+                            ].id == res.data[0].lowestId
+                        ) {
+                            vueInstanceData.noMore = true;
+                        }
                     })
                     .catch(function (err) {
                         console.log("error from post req", err);
