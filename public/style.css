@@ -63,8 +63,8 @@ main {
     z-index: 1;
     box-sizing: border-box;
     background-color: black;
-    width: 1500px;
-    height: 1500px;
+    width: 800px;
+    height: 800px;
 }
 
 .component {
