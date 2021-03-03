@@ -53,7 +53,7 @@
                 <button @click="getFurtherImages()">More</button>
                 </div>
                 <!-- more button -->
-
+           
             </div>
       
         <!-- First Template For First Component -->
@@ -67,6 +67,7 @@
                         <p>{{image.username}}</p>
                         <p>{{image.created_at}}</p> 
                </div>
+                <my-comment-component v-bind:imageId="image.id"></my-comment-component>
 
             </div>
         </script>

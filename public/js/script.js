@@ -30,16 +30,28 @@
         },
         props: ["imageId"],
         mounted: function () {
-            axios.get("/comment/").then((res) => {
+            var vueComponentData = this;
+            console.log(this);
+            axios.get("/get-comments/" + this.imageid).then((res) => {
+                console.log(res.data);
+                vueComponentData.comments = res.data;
                 console.log(res.data);
             });
         },
         methods: {
-            writeComment: function (e) {
-                e.preventDefault();
+            writeComment: function () {
+                var vueComponentData = this;
+                var data = {
+                    comment: this.comment,
+                    username: this.username,
+                    imageId: this.image.id,
+                };
                 axios
-                    .post("/comment/")
-                    .then(function (res) {})
+                    .post("/comment", data)
+                    .then(function (res) {
+                        console.log(res.data);
+                        vueComponentData.comments.unshift(res.data);
+                    })
                     .catch(function (err) {
                         console.log("error from post req", err);
                     });

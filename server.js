@@ -24,7 +24,7 @@ const uploader = multer({
         fileSize: 2097152,
     },
 });
-
+app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/images", (req, res) => {
@@ -90,8 +90,8 @@ app.get("/get-comments/:imageid", (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-    const { comment, username } = req.body;
-    db.insertComments(comment, username).then(({ rows }) => {
+    const { comment, username, imageid } = req.body;
+    db.insertComments(comment, username, imageid).then(({ rows }) => {
         console.log(rows);
         res.json({
             success: true,
