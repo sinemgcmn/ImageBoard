@@ -12,6 +12,20 @@
                 this.image = res.data[0];
             });
         },
+        watch: {
+            imageId: function () {
+                console.log("imageId changed!! This is the watcher reporting");
+                axios
+                    .get("/images/" + this.imageId)
+                    .then((res) => {
+                        this.image = res.data[0];
+                    })
+                    .catch(function (err) {
+                        console.log("error in axios", err);
+                    });
+            },
+        },
+
         methods: {
             closeModalOnParent: function () {
                 this.$emit("close");
@@ -37,6 +51,23 @@
                 console.log(res.data);
             });
         },
+
+        watch: {
+            imageId: function () {
+                console.log("imageId changed!! This is the watcher reporting");
+                var vueComponentData = this;
+                axios
+                    .get("/get-comments/" + this.imageId)
+                    .then((res) => {
+                        vueComponentData.comments = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(function (err) {
+                        console.log("error in axios", err);
+                    });
+            },
+        },
+
         methods: {
             writeComment: function () {
                 var vueComponentData = this;
@@ -67,11 +98,11 @@
             description: "",
             username: "",
             file: null,
-            imageSelected: null,
+            imageSelected: location.hash.slice(1),
         },
 
         mounted: function () {
-            // var vueInstanceData = this;
+            var vueInstanceData = this;
             axios
                 .get("/images")
                 .then((response) => {
@@ -80,6 +111,11 @@
                 .catch(function (err) {
                     console.log("error in axios", err);
                 });
+            window.addEventListener("hashchange", function () {
+                console.log("has change has fired");
+                console.log(location.hash);
+                vueInstanceData.imageSelected = location.hash.slice(1);
+            });
         },
         methods: {
             selectImage: function (id) {
