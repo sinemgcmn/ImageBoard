@@ -110,7 +110,7 @@
             username: "",
             file: null,
             imageSelected: location.hash.slice(1),
-            noMore: true,
+            noMore: false,
         },
 
         mounted: function () {
