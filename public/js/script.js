@@ -37,7 +37,7 @@
         methods: {
             closeModalOnParent: function () {
                 console.log(location);
-                // location.href = location.origin;
+                location.href = location.origin;
                 this.$emit("close");
             },
         },
@@ -58,7 +58,7 @@
             // console.log(this);
             axios.get("/get-comments/" + this.imageId).then((res) => {
                 vueComponentData.comments = res.data;
-                console.log(vueComponentData.comments);
+                // console.log(vueComponentData.comments);
             });
         },
 
@@ -110,6 +110,7 @@
             username: "",
             file: null,
             imageSelected: location.hash.slice(1),
+            noMore: true,
         },
 
         mounted: function () {
@@ -123,7 +124,7 @@
                     console.log("error in axios", err);
                 });
             window.addEventListener("hashchange", function () {
-                console.log(parseInt(location.hash.slice(1)));
+                // console.log(parseInt(location.hash.slice(1)));
                 if (
                     !isNaN(parseInt(location.hash.slice(1))) &&
                     !location.hash.slice(1) == ""
