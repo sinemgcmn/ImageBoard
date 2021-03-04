@@ -57,6 +57,14 @@ main {
     background-position: center; */
 }
 
+.titleImage {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+
 .back {
     position: fixed;
     display: flex;
@@ -136,6 +144,7 @@ main {
 }
 
 .inputTitle {
+    margin-top: 10px;
     font-size: 24px;
     text-decoration: underline;
 }
@@ -182,7 +191,11 @@ input {
 img {
     width: 400px;
     height: 350px;
-    padding: 10px;
+    padding: 30px;
+    box-shadow: 10px 10px 5px #ccc;
+    -moz-box-shadow: 10px 10px 5px #ccc;
+    -webkit-box-shadow: 10px 10px 5px #ccc;
+    -khtml-box-shadow: 10px 10px 5px #ccc;
 }
 
 .image-container {

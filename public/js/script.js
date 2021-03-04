@@ -37,7 +37,7 @@
         methods: {
             closeModalOnParent: function () {
                 console.log(location);
-                location.href = location.origin;
+                // location.href = location.origin;
                 this.$emit("close");
             },
         },
@@ -201,3 +201,13 @@
         },
     });
 })();
+
+//  if (
+//      !isNaN(parseInt(location.hash.slice(1))) &&
+//      !location.hash.slice(1) == ""
+//  ) {
+//      vueInstanceData.imageSelected = location.hash.slice(1);
+//  } else {
+//      vueInstanceData.closeComponent();
+//      location.href = location.origin;
+//  }
