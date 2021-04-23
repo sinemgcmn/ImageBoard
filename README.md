@@ -2,7 +2,7 @@
 
 ## Imageboard is an Instagram-like app with Berlin street-art as topic 🌈
 
-React-based authenticated social network featuring friending and chat functionality.
+Vue-based instagram-like app featuring uploading photo and comment functionality.
 
 <img src="https://media.giphy.com/media/At7qlvs5WqX3U5cCWc/giphy.gif" width="400" height="250" />
 
